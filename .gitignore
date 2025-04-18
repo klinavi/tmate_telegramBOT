@@ -1,0 +1,11 @@
+# Ignorar archivo con variables sensibles
+.env
+
+# Ignorar archivos de caché de Python
+__pycache__/
+*.pyc
+
+# Ignorar archivos temporales
+*.log
+*.tmp
+
