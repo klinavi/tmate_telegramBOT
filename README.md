@@ -1,6 +1,7 @@
 # Tmate TelegramBOT - Terminal remota
 
 **Tmate_TelegramBOT** es un script que automatiza la ejecución de una terminal remota con ayuda de **tmate**, y permite ver el estado de la sesión en un chat de Telegram mediante un bot. Su objetivo es ofrecer acceso a una terminal desde un teléfono móvil, sin necesidad de usar una computadora.
+
 ---
 
 ## Cración del bot
