@@ -4,7 +4,7 @@ import logging
 from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
-import command_manager  # Importa las funciones desde tmate_manager.py
+import command_manager  # Importa las funciones desde command_manager.py
 
 # Cargar variables de entorno desde un archivo .env
 load_dotenv()
@@ -22,30 +22,30 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("¡Hola! Soy tu bot de tmate. ¿Cómo puedo ayudarte hoy?")
 
 async def crear_sesion(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    tmate_manager.crear_sesion()
-    ssh, ssh_ro = tmate_manager.obtener_enlaces()
+    command_manager.crear_sesion()
+    ssh, ssh_ro = command_manager.obtener_enlaces()
     msg = f"✅ Sesión creada.\n🔗 SSH: `{ssh}`\n🔗 Web (solo lectura): `{ssh_ro}`"
     await update.message.reply_text(msg, parse_mode='Markdown')
 
 async def matar_sesion(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    tmate_manager.cerrar_sesion()
+    command_manager.cerrar_sesion()
     await update.message.reply_text("❌ Sesión terminada.")
 
 async def estado_sesion(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    estado = tmate_manager.sesion_activa()
+    estado = command_manager.sesion_activa()
     msg = "🟢 Sesión activa." if estado else "🔴 No hay sesión activa."
     await update.message.reply_text(msg)
 
 async def obtener_enlace_ssh(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if tmate_manager.sesion_activa():
-        ssh, _ = tmate_manager.obtener_enlaces()
+    if command_manager.sesion_activa():
+        ssh, _ = command_manager.obtener_enlaces()
         await update.message.reply_text(f"🔗 Enlace SSH:\n`{ssh}`", parse_mode='Markdown')
     else:
         await update.message.reply_text("⚠️ No hay una sesión activa.")
 
 async def obtener_enlace_web(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if tmate_manager.sesion_activa():
-        _, ssh_ro = tmate_manager.obtener_enlaces()
+    if command_manager.sesion_activa():
+        _, ssh_ro = command_manager.obtener_enlaces()
         await update.message.reply_text(f"🔗 Enlace Web (solo lectura):\n`{ssh_ro}`", parse_mode='Markdown')
     else:
         await update.message.reply_text("⚠️ No hay una sesión activa.")
