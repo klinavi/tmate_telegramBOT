@@ -65,7 +65,9 @@ def main():
     app.add_handler(CommandHandler("obtener_enlace_web", obtener_enlace_web))
     app.add_handler(CommandHandler("ver_mensajes", ver_mensajes))
 
+    # Cambié a run_polling(), que es la forma correcta con la nueva API
     app.run_polling()
 
 if __name__ == "__main__":
     main()
+
