@@ -16,5 +16,5 @@ echo "--------------------------------------------------------------------------
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo "[+] Ejecutando main.py..."
-python "$DIR/main.py"
+python3 "$DIR/main.py"
 
